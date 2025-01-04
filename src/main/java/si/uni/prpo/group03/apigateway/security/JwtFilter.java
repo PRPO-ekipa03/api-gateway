@@ -45,7 +45,10 @@ public class JwtFilter extends OncePerRequestFilter {
         final String token = authHeader.substring(7);
 
         try {
-            String validateTokenURL = "http://localhost:8081/api/auth/validate-token";
+            String authServiceHost = System.getenv().getOrDefault("USER_SERVICE_HOST", "localhost");
+            String authServicePort = System.getenv().getOrDefault("USER_SERVICE_PORT", "8081");
+            String validateTokenURL = "http://" + authServiceHost + ":" + authServicePort + "/api/auth/validate-token";
+
             ResponseEntity<String> validationResponse = restTemplate.postForEntity(validateTokenURL, token, String.class);
 
             final String userId = validationResponse.getBody();
