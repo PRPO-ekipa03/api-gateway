@@ -28,7 +28,7 @@ spring:
           - id: venue_service
             uri: http://${VENUE_SERVICE_HOST:localhost}:${VENUE_SERVICE_PORT:8084}
             predicates:
-              - Path=/api/venues/**, /venues/swagger-ui/**, /venues/api-docs/**
+              - Path=/api/venues/**, /api/reservations/**, /venues/swagger-ui/**, /venues/api-docs/**
 
           - id: guest_service
             uri: http://${GUEST_SERVICE_HOST:localhost}:${GUEST_SERVICE_PORT:8085}
