@@ -13,32 +13,42 @@ spring:
           - id: user_service
             uri: http://${USER_SERVICE_HOST:localhost}:${USER_SERVICE_PORT:8081}
             predicates:
-              - Path=/api/users/**, /api/auth/**, /users/swagger-ui/**, /users/api-docs/**
+              - Path=/api/users/**, /api/auth/**, /users/swagger-ui/**, /users/api-docs/**, /users/health
 
           - id: payment_service
             uri: http://${PAYMENT_SERVICE_HOST:localhost}:${PAYMENT_SERVICE_PORT:8082}
             predicates:
-              - Path=/api/payments/**, /payments/swagger-ui/**, /payments/api-docs/**
+              - Path=/api/payments/**, /payments/swagger-ui/**, /payments/api-docs/**, /payments/health
 
           - id: event_service
             uri: http://${EVENT_SERVICE_HOST:localhost}:${EVENT_SERVICE_PORT:8083}
             predicates:
-              - Path=/api/events/**, /events/swagger-ui/**, /events/api-docs/**
+              - Path=/api/events/**, /events/swagger-ui/**, /events/api-docs/**, /events/health
 
           - id: venue_service
             uri: http://${VENUE_SERVICE_HOST:localhost}:${VENUE_SERVICE_PORT:8084}
             predicates:
-              - Path=/api/venues/**, /api/reservations/**, /venues/swagger-ui/**, /venues/api-docs/**
+              - Path=/api/venues/**, /api/reservations/**, /venues/swagger-ui/**, /venues/api-docs/**, /venues/health
 
           - id: guest_service
             uri: http://${GUEST_SERVICE_HOST:localhost}:${GUEST_SERVICE_PORT:8085}
             predicates:
-              - Path=/api/guests/**, /guests/swagger-ui/**, /guests/api-docs/**
+              - Path=/api/guests/**, /guests/swagger-ui/**, /guests/api-docs/**, /guests/health
 
           - id: notification_service
             uri: http://${NOTIFICATION_SERVICE_HOST:localhost}:${NOTIFICATION_SERVICE_PORT:8086}
             predicates:
-              - Path=/api/notifications/**, /notifications/swagger-ui/**, /notifications/api-docs/**
+              - Path=/api/notifications/**, /notifications/swagger-ui/**, /notifications/api-docs/**, /notifications/health
+
+management:
+  endpoints:
+    web:
+      base-path: /api-gateway/
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
 
 logging:
   level:
